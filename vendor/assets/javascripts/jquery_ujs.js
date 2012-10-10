@@ -164,11 +164,13 @@
           error: function(xhr, status, error) {
             element.trigger('ajax:error', [xhr, status, error]);
           },
-          xhrFields: {
-            withCredentials: withCredentials
-          },
           crossDomain: crossDomain
         };
+        if (withCredentials) {
+          options['xhrFields'] = {
+            withCredentials: withCredentials
+          }
+        }
         // Only pass url to `ajax` options if not blank
         if (url) { options.url = url; }
 
